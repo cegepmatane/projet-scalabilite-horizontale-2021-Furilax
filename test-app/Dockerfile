@@ -1,10 +1,3 @@
-FROM debian:9
-
-#Install MySQL
-RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get -yq install mysql-server
-EXPOSE 3306
-
 FROM php:8.0-apache-buster
 
 # install the PHP extensions we need
