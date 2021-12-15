@@ -43,21 +43,33 @@ Le résultat de la commande renvoit un token **manager** qu'il faudra récupére
 <code>sudo docker network create -d overlay net</code>
 
 Ensuite, il faut lancer le proxy inverse avec Traefik :
+
 <code>sudo mkdir -p /home/docker/swarm/</code>
 
 <code>sudo nano /home/docker/swarm/traefik.yml</code>
 
-Il faut 
+À ce stade, il faut copier l'intégralité du fichier *traefik.yml* disponible dans le répertoire **app** du Github dans le fichier *traefik.yml* de votre machine.
 
+### Déployer Traefik
 
+<code>sudo docker stack deploy --compose-file=/home/docker/swarm/traefik.yml traefik</code>
 
-<code></code>
-<code></code>
-<code></code>
-<code></code>
-<code></code>
-<code></code>
-<code></code>
-<code></code>
-<code></code>
-<code></code>
+En cas de besoin, vous pouvez retirer Traefik : <code>sudo docker stack rm traefik</code>
+
+Dans votre navigateur, après 2 ou 3 minutes, le proxy inverse Traefik devrait être en fonction sur la machine swarm-0 sur le port 9090 : http://192.168.56.10:9090
+
+### Déployer Drupal
+
+Il faut créer le fichier de configuration Drupal à l'aide du fichier *docker-compose.yml* disponible dans le répertoire Github.
+<code>sudo nano /home/docker/swarm/docker-compose.yml</code>
+
+Il faut maintenant déployer le fichier *docker-compose.yml*.
+<code>sudo docker stack deploy --compose-file=/home/docker/swarm/docker-compose.yml docker-compose</code>
+
+En cas de besoin, vous pouvez retirer docker-compose : <code>sudo docker stack rm docker-compose</code>
+
+### Vérifier l'installation
+
+<code>sudo docker service ps docker-compose</code>
+
+## Vous pouvez désormais lancer Drupal à votre adresse
