@@ -58,7 +58,7 @@ Crée la base de données qui sera utiliser par drupal
 
 Creer l'utilisateur drupal assosier à son ip
 
-<code>GRANT ALL PRIVILEGES ON *.* TO 'drupal'@'172.17.0.2';</code>
+<code>GRANT ALL PRIVILEGES ON drupalbd.* TO 'drupal'@'172.17.0.2';</code>
 
 Donne tout les privillége a cette utilisateur drupal
 
